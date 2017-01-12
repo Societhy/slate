@@ -736,9 +736,19 @@ address | adresse de la clef à supprimer
 <aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
  ```python
+def refresh_all_balances(user):
+  accounts = user.get('eth').get('keys')
+  ret = dict()
+  for account in accounts.keys():
+    ret[account] = wei_to_ether(eth_cli.eth_getBalance(account))
+  return {
+    "data": ret,
+    "status": 200
+  }
  ```
 
  ```json
+ 0.0
  ```
 
 **Requête HTTP**
@@ -755,9 +765,27 @@ aucun | /
 <aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
  ```python
- ```
+ def refresh_balance(user, account=None):
+  if account in user.get('eth').get('keys').keys():
+    return {
+      "data": user.refresh_balance(account),
+      "status": 200
+    }
+  elif not account:
+    balance = eth_cli.eth_getBalance(user.get('eth').get('mainKey'))
+    return {
+      "data": wei_to_ether(balance),
+      "status": 200
+    }
+  else:
+    return {
+      "data": "user %s does not own %s" % (user.get('id'), account),
+      "status": 400
+    }
+```
 
  ```json
+0.0
  ```
 
 **Requête HTTP**
@@ -774,9 +802,38 @@ address | adresse de la balance souhaitée
 <aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
  ```python
- ```
+def get_tx_history(user, account):
+  # r = requests.get('https://etherchain.org/api/account/%s/tx/0' % account)
+  print("REQUESTING : ", "https://etherchain.org/api/account/0xEA674fdDe714fd979de3EdF0F56AA9716B898ec8/tx/0")
+  r = requests.get('https://etherchain.org/api/account/0xEA674fdDe714fd979de3EdF0F56AA9716B898ec8/tx/0')
+  data = r.json().get('data')
+  return {
+      "data": data,
+      "status": 200
+    }
+```
 
  ```json
+ [
+  {
+    "accountNonce": "1079107", 
+    "amount": 1018447849366805100, 
+    "blockHash": "0x4120921df50faf20d0f7919c2beaa7a78b944314c714079ae7fbc38358ba5351", 
+    "block_id": 2983818, 
+    "gasLimit": 90000, 
+    "gasUsed": 21000, 
+    "hash": "0x19a4a94893aedb3eed733a00caf3fb0fd062950e5c91f04e95b5956350a9a7b7", 
+    "isContractTx": null, 
+    "newContract": 0, 
+    "parentHash": "0x19a4a94893aedb3eed733a00caf3fb0fd062950e5c91f04e95b5956350a9a7b7", 
+    "price": 20000000000, 
+    "recipient": "0x8875c744b353bc3ec188e00d27853aa95ed3861e", 
+    "sender": "0xea674fdde714fd979de3edf0f56aa9716b898ec8", 
+    "time": "2017-01-12T18:10:28.000Z", 
+    "txIndex": null, 
+    "type": "tx"
+  }, {}, {}........ ]
+
  ```
 
 **Requête HTTP**
