@@ -17,32 +17,17 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# User
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
+## Inscription, connexion et authentification
 
 > To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
 
 ```python
 import kittn
 
 api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
 ```
 
 ```javascript
@@ -63,9 +48,9 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+## Information management
 
-## Get All Kittens
+### Some method
 
 ```ruby
 require 'kittn'
@@ -131,7 +116,7 @@ available | true | If set to false, the result will include kittens that have al
 Remember — a happy kitten is an authenticated kitten!
 </aside>
 
-## Get a Specific Kitten
+### Some other method
 
 ```ruby
 require 'kittn'
@@ -185,3 +170,6 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to retrieve
 
+## Key management
+
+## Wallet management
