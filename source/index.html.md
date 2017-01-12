@@ -120,6 +120,7 @@ password  | Mot de passe de l'utilisateur.
 
 ## Déconnexion
 Ce point d'accès déconnecte un utilisateur.
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
 ```python
 def logout(user):
@@ -298,12 +299,14 @@ token | Token d'authentification à vérifier.
 
 ## Suppression
 Ce point d'accès supprime un utilisateur.
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 > Cette méthode ne fait rien pour le moment.
 
 # Information management
 
 ## Mise à jour des informations utilisateur
 <aside class="notice">Ce point d'accès met à jour les informations de l'utilisateur. Il est utilisé uniquement pour informations sociales pour le moment.</aside>
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
 ```python
 def update(user, newData):
@@ -356,6 +359,7 @@ def update(user, newData):
 
 ## Mise à jour des informations utilisateur
 <aside class="notice">Ce point d'accès met à jour les informations de l'utilisateur. Il est utilisé uniquement pour les informations affichées dans le profil de l'utilisateur.</aside>
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
 ```python
 def updateUserField(user, newData):
