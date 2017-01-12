@@ -469,6 +469,7 @@ name | Nom de l'utilisateur à rechercher.
 ## Key management
 
 ### Génère une clef liée au compte
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
  ```python
 def gen_linked_key(user, password):
@@ -504,6 +505,7 @@ Paramètres | Description
 Aucun | /
 
 ### Génération de clef locale
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
  ```python
 def key_was_generated(user, address):
@@ -530,6 +532,7 @@ Paramètres | Description
 address | adresse de la nouvelle clef
 
 ### Importer une clef existante
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
  ```python
 def import_new_key(user, sourceKey):
@@ -590,6 +593,7 @@ Paramètres | Description
 key | fichier contenant la clef existante
 
 ### Exporter une clef
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
  ```python
 def export_key(user, address, delete=False):
@@ -659,6 +663,7 @@ Paramètres | Description
 address | adresse de la clef à exporter
 
 ### Supprimer une clef
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
  ```python
 def export_key(user, address, delete=False):
@@ -728,6 +733,7 @@ address | adresse de la clef à supprimer
 ## Wallet management
 
 ### Get la balance totale d'un utilisateur
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
  ```python
  ```
@@ -746,6 +752,7 @@ Paramètres | Description
 aucun | /
 
 ### Get la balance d'une addresse
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
  ```python
  ```
@@ -764,6 +771,7 @@ Paramètres | Description
 address | adresse de la balance souhaitée
 
 ### Get l'historique des transactions
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
  ```python
  ```
