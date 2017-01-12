@@ -15,9 +15,9 @@ search: true
 ---
 # User
 
-# Inscription, connexion et authentification
+## Inscription, connexion et authentification
 
-## Connexion
+### Connexion
 
 Ce point d'accès permet de connecter un utilisateur.
 
@@ -118,7 +118,7 @@ Paramètre | Description
 username  | Nom de connexion de l'utilisateur.
 password  | Mot de passe de l'utilisateur.
 
-## Déconnexion
+### Déconnexion
 Ce point d'accès déconnecte un utilisateur.
 <aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
@@ -139,7 +139,7 @@ def logout(user):
 
 `GET /logout`
 
-## Inscription
+### Inscription
 Ce point d'accès permet d'inscrire un nouvel utilisateur.
 
 ```python
@@ -251,7 +251,7 @@ gender | "" | Sexe de l'utilisateur.
 address | "" | Adresse de l'utilisateur.
 city | "" | Ville de l'utilisateur.
 
-## Vérification du token d'authentification
+### Vérification du token d'authentification
 Ce point d'accès permet de vérifier que l'utilisateur est bien authentifié.
 
 ```python
@@ -297,14 +297,14 @@ Paramètre | Description
 ----------|------------
 token | Token d'authentification à vérifier.
 
-## Suppression
+### Suppression
 Ce point d'accès supprime un utilisateur.
 <aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 > Cette méthode ne fait rien pour le moment.
 
-# Information management
+## Information management
 
-## Mise à jour des informations utilisateur
+### Mise à jour des informations utilisateur
 <aside class="notice">Ce point d'accès met à jour les informations de l'utilisateur. Il est utilisé uniquement pour informations sociales pour le moment.</aside>
 <aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
@@ -357,7 +357,7 @@ def update(user, newData):
 
 `POST /updateUser`
 
-## Mise à jour des informations utilisateur
+### Mise à jour des informations utilisateur
 <aside class="notice">Ce point d'accès met à jour les informations de l'utilisateur. Il est utilisé uniquement pour les informations affichées dans le profil de l'utilisateur.</aside>
 <aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
 
@@ -419,7 +419,7 @@ new | Nouvelle valeur du champ.
 old | Ancienne valeur.
 name | Nom du champ à modifier.
 
-## Recherche d'un utilisateur
+### Recherche d'un utilisateur
 Ce point d'accès permet de trouver un utilisateur.
 
 ```python
@@ -466,9 +466,9 @@ Paramètres | Description
 -----------|------------
 name | Nom de l'utilisateur à rechercher.
 
-# Key management
+## Key management
 
-## Génère une clef liée au compte
+### Génère une clef liée au compte
 
  ```python
 def gen_linked_key(user, password):
@@ -480,7 +480,7 @@ def gen_linked_key(user, password):
     key = eth_cli.personal_newAccount(hashPassword)
     keyFile = list(set(listdir(keyDirectory)) - set(dirContent))[0]
     return {"address": key, "file": keyFile}
-  
+
   newKey = gen_key_remote(password)
   user.add_key(newKey.get('address'), local=False, balance=0, file=newKey.get('file'))
   return {
@@ -503,7 +503,7 @@ Paramètres | Description
 -----------|------------
 Aucun | /
 
-## Génération de clef locale
+### Génération de clef locale
 
  ```python
 def key_was_generated(user, address):
@@ -529,7 +529,7 @@ Paramètres | Description
 -----------|------------
 address | adresse de la nouvelle clef
 
-## Importer une clef existante
+### Importer une clef existante
 
  ```python
 def import_new_key(user, sourceKey):
@@ -566,7 +566,7 @@ def import_new_key(user, sourceKey):
   except (KeyExistsError):
     data = "trying to import an existing key"
     status = 400
-  
+
   return {
     "data": data,
     "status": status
@@ -589,12 +589,12 @@ Paramètres | Description
 -----------|------------
 key | fichier contenant la clef existante
 
-## Exporter une clef
+### Exporter une clef
 
  ```python
 def export_key(user, address, delete=False):
   exportedKey = user.get_key(address)
-  
+
   if exportedKey and delete and exportedKey.get('local') is True:
     user.remove_key(address, local=True)
     return {
@@ -623,25 +623,25 @@ def export_key(user, address, delete=False):
 
  ```json
 {
-  "address": "7f607df82ec1107cfd31431aefc03041dd239316", 
+  "address": "7f607df82ec1107cfd31431aefc03041dd239316",
   "crypto": {
-    "cipher": "aes-128-ctr", 
+    "cipher": "aes-128-ctr",
     "cipherparams": {
       "iv": "e0aeff559a53241f7f57cd5accea9330"
-    }, 
-    "ciphertext": "208d1ada7c79aa2be36252705420145955869089489aaf9387713e117c9c4f66", 
-    "kdf": "pbkdf2", 
+    },
+    "ciphertext": "208d1ada7c79aa2be36252705420145955869089489aaf9387713e117c9c4f66",
+    "kdf": "pbkdf2",
     "kdfparams": {
-      "c": 10240, 
-      "dklen": 32, 
-      "prf": "hmac-sha256", 
+      "c": 10240,
+      "dklen": 32,
+      "prf": "hmac-sha256",
       "salt": "d55d2e80e22fb8a716453d7d8d3300d8fe28d7bdc732b9a327cc026ca92dd6f0"
-    }, 
+    },
     "mac": "3eba1319a5a719812651bcf4e1f7389265dd45c10bd05b378b5f0d24a6b88ccd"
-  }, 
-  "id": "8b2899cc-1cda-d6ad-e24a-4aa519783a99", 
-  "meta": "{}", 
-  "name": "8b2899cc-1cda-d6ad-e24a-4aa519783a99", 
+  },
+  "id": "8b2899cc-1cda-d6ad-e24a-4aa519783a99",
+  "meta": "{}",
+  "name": "8b2899cc-1cda-d6ad-e24a-4aa519783a99",
   "version": 3
 }
 
@@ -658,12 +658,12 @@ Paramètres | Description
 -----------|------------
 address | adresse de la clef à exporter
 
-## Supprimer une clef
+### Supprimer une clef
 
  ```python
 def export_key(user, address, delete=False):
   exportedKey = user.get_key(address)
-  
+
   if exportedKey and delete and exportedKey.get('local') is True:
     user.remove_key(address, local=True)
     return {
@@ -692,25 +692,25 @@ def export_key(user, address, delete=False):
 
  ```json
  {
-  "address": "a98786136a8d89525b1c1618f601e649116da8c6", 
+  "address": "a98786136a8d89525b1c1618f601e649116da8c6",
   "crypto": {
-    "cipher": "aes-128-ctr", 
+    "cipher": "aes-128-ctr",
     "cipherparams": {
       "iv": "6e6c4af40b62f5ad613d9dcc3bb23897"
-    }, 
-    "ciphertext": "d546ac8273e5f6962b658d8c2a7fea6939022704dc78d1244491ac473b8b7f52", 
-    "kdf": "pbkdf2", 
+    },
+    "ciphertext": "d546ac8273e5f6962b658d8c2a7fea6939022704dc78d1244491ac473b8b7f52",
+    "kdf": "pbkdf2",
     "kdfparams": {
-      "c": 10240, 
-      "dklen": 32, 
-      "prf": "hmac-sha256", 
+      "c": 10240,
+      "dklen": 32,
+      "prf": "hmac-sha256",
       "salt": "38daeb21f66984bfeb93a43f3507126ad362e9fc7c7ff3ddc6876a7f8bf4561e"
-    }, 
+    },
     "mac": "4041bc2f35464d6ab1a2d8e7e8d9f79aff4c1c93e5c5e721076fedb029b2b9af"
-  }, 
-  "id": "9a463bfd-4e09-1f60-ad13-c1857f4eba45", 
-  "meta": "{}", 
-  "name": "9a463bfd-4e09-1f60-ad13-c1857f4eba45", 
+  },
+  "id": "9a463bfd-4e09-1f60-ad13-c1857f4eba45",
+  "meta": "{}",
+  "name": "9a463bfd-4e09-1f60-ad13-c1857f4eba45",
   "version": 3
 }
  ```
@@ -725,9 +725,9 @@ Paramètres | Description
 -----------|------------
 address | adresse de la clef à supprimer
 
-# Wallet management
+## Wallet management
 
-## Get la balance totale d'un utilisateur
+### Get la balance totale d'un utilisateur
 
  ```python
  ```
@@ -745,7 +745,7 @@ Paramètres | Description
 -----------|------------
 aucun | /
 
-## Get la balance d'une addresse
+### Get la balance d'une addresse
 
  ```python
  ```
@@ -763,7 +763,7 @@ Paramètres | Description
 -----------|------------
 address | adresse de la balance souhaitée
 
-## Get l'historique des transactions
+### Get l'historique des transactions
 
  ```python
  ```
