@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -16,11 +14,11 @@
   background-color: #272822;
 }
 .highlight .err {
-  color: #151515;
-  background-color: #ac4142;
+  color: #272822;
+  background-color: #f92672;
 }
 .highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #505050;
+  color: #75715e;
 }
 .highlight .cp {
   color: #f4bf75;
@@ -29,45 +27,45 @@
   color: #f4bf75;
 }
 .highlight .o, .highlight .ow {
-  color: #d0d0d0;
+  color: #f8f8f2;
 }
 .highlight .p, .highlight .pi {
-  color: #d0d0d0;
+  color: #f8f8f2;
 }
 .highlight .gi {
-  color: #90a959;
+  color: #a6e22e;
 }
 .highlight .gd {
-  color: #ac4142;
+  color: #f92672;
 }
 .highlight .gh {
-  color: #6a9fb5;
-  background-color: #151515;
+  color: #66d9ef;
+  background-color: #272822;
   font-weight: bold;
 }
 .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-  color: #aa759f;
+  color: #ae81ff;
 }
 .highlight .kc {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .kt {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .kd {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-  color: #90a959;
+  color: #a6e22e;
 }
 .highlight .sr {
-  color: #75b5aa;
+  color: #a1efe4;
 }
 .highlight .si {
-  color: #8f5536;
+  color: #cc6633;
 }
 .highlight .se {
-  color: #8f5536;
+  color: #cc6633;
 }
 .highlight .nn {
   color: #f4bf75;
@@ -79,31 +77,32 @@
   color: #f4bf75;
 }
 .highlight .na {
-  color: #6a9fb5;
+  color: #66d9ef;
 }
 .highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
-  color: #90a959;
+  color: #a6e22e;
 }
 .highlight .ss {
-  color: #90a959;
+  color: #a6e22e;
 }
     </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;python&quot;,&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" />
+        <img src="images/navbar.png" alt="Navbar" />
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <img src="images/logo.png" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -113,234 +112,974 @@
       </div>
         <ul class="toc-footer">
             <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
+        <h1 id="user">User</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<h2 id="inscription-connexion-et-authentification">Inscription, connexion et authentification</h2>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<h3 id="connexion">Connexion</h3>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<p>Ce point d&#39;accès permet de connecter un utilisateur.</p>
+<pre class="highlight python"><code><span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">credentials</span><span class="p">):</span>
 
-<h1 id="authentication">Authentication</h1>
+    <span class="n">user</span> <span class="o">=</span> <span class="bp">None</span>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+    <span class="k">def</span> <span class="nf">auth_user</span><span class="p">(</span><span class="n">credentials</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">credentials</span><span class="p">:</span>
+            <span class="n">credentials</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">b64decode</span><span class="p">(</span><span class="n">credentials</span><span class="p">),</span> <span class="s">'utf-8'</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">':'</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">name</span><span class="p">,</span> <span class="n">passw</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">encode_hex</span><span class="p">(</span><span class="n">scrypt</span><span class="o">.</span><span class="nb">hash</span><span class="p">(</span><span class="n">credentials</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">"du gros sel s'il vous plait"</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">passw</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">):</span>
+                    <span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s">"name"</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s">"password"</span><span class="p">:</span> <span class="n">passw</span><span class="p">},</span> <span class="n">users</span><span class="o">.</span><span class="n">user_info</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">user</span>
+        <span class="k">return</span> <span class="bp">None</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+    <span class="k">def</span> <span class="nf">auth_user_social</span><span class="p">(</span><span class="n">credentials</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"provider"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"facebook"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">users</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s">"social.facebook.id"</span> <span class="p">:</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"socialId"</span><span class="p">]})</span>
+        <span class="k">if</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"provider"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"github"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">users</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s">"social.github.id"</span> <span class="p">:</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"socialId"</span><span class="p">]})</span>
+        <span class="k">if</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"provider"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"coinbase"</span> <span class="p">:</span>
+            <span class="k">return</span> <span class="n">users</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s">"social.coinbase.id"</span> <span class="p">:</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"socialId"</span><span class="p">]})</span>
+        <span class="k">if</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"provider"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"linkedin"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">users</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s">"social.linkedin.id"</span> <span class="p">:</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"socialId"</span><span class="p">]})</span>
+        <span class="k">if</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"provider"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"twitter"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">users</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s">"social.twitter.id"</span> <span class="p">:</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"socialId"</span><span class="p">]})</span>
+        <span class="k">if</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"provider"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"google"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">users</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s">"social.google.id"</span> <span class="p">:</span> <span class="n">credentials</span><span class="p">[</span><span class="s">"socialId"</span><span class="p">]})</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
 
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'authentification'</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'authentification'</span><span class="p">)</span> <span class="ow">in</span> <span class="n">session</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s">"data"</span><span class="p">:</span> <span class="s">"already logged in"</span><span class="p">,</span>
+            <span class="s">"status"</span><span class="p">:</span> <span class="mi">403</span>
+        <span class="p">}</span>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+    <span class="k">if</span> <span class="s">"socialId"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">credentials</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">auth_user</span><span class="p">(</span><span class="n">credentials</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'id'</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">auth_user_social</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">jwt</span><span class="o">.</span><span class="n">encode</span><span class="p">({</span><span class="s">"_id"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"_id"</span><span class="p">)),</span> <span class="s">"timestamp"</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">a</span><span class="si">%</span><span class="s">d</span><span class="si">%</span><span class="s">b</span><span class="si">%</span><span class="s">Y</span><span class="si">%</span><span class="s">H</span><span class="si">%</span><span class="s">M</span><span class="si">%</span><span class="s">S"</span><span class="p">)},</span> <span class="n">secret_key</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s">'HS256'</span><span class="p">),</span> <span class="s">'utf-8'</span><span class="p">)</span>
+        <span class="n">session</span><span class="p">[</span><span class="n">token</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s">"token"</span><span class="p">:</span> <span class="n">token</span><span class="p">,</span>
+                    <span class="s">"user"</span><span class="p">:</span> <span class="n">deserialize_user</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+                <span class="p">},</span>
+                <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span><span class="p">}</span>
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-<h1 id="kittens">Kittens</h1>
-
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="s">"User does not exists of false password"</span><span class="p">,</span>
+                <span class="s">"status"</span><span class="p">:</span> <span class="mi">401</span><span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;token&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"user"</span><span class="p">:</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"586873da9a112c005018081b"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3 rue toto"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"birthday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"06/12/1990"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Paris"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"toto@api.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eth"</span><span class="w"> </span><span class="p">:</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"mainKey"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"keys"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"firstname"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"toto"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"gender"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastname"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tata"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tototata"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"password"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"06739ff96e0da"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p><strong>Requête HTTP</strong></p>
 
-<p>This endpoint retrieves all kittens.</p>
+<p><code class="prettyprint">POST /login</code></p>
 
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
+<p><strong>Paramètres de requête</strong></p>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Paramètre</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>Nom de connexion de l&#39;utilisateur.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Mot de passe de l&#39;utilisateur.</td>
+</tr>
+</tbody></table>
+
+<h3 id="d-connexion">Déconnexion</h3>
+
+<p>Ce point d&#39;accès déconnecte un utilisateur.
+<aside class="warning">Ce point d&#39;accès nécessite d&#39;être authentifié.</aside></p>
+<pre class="highlight python"><code><span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'authentification'</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">session</span><span class="p">[</span><span class="n">token</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"success"</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"succes"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>Requête HTTP</strong></p>
+
+<p><code class="prettyprint">GET /logout</code></p>
+
+<h3 id="inscription">Inscription</h3>
+
+<p>Ce point d&#39;accès permet d&#39;inscrire un nouvel utilisateur.</p>
+<pre class="highlight python"><code><span class="k">def</span> <span class="nf">sign_up</span><span class="p">(</span><span class="n">newUser</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">wrong_signup_request</span><span class="p">(</span><span class="n">newUser</span><span class="p">):</span>
+        <span class="n">required_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s">"name"</span><span class="p">,</span> <span class="s">"password"</span><span class="p">,</span> <span class="s">"email"</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">required_fields</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">newUser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">field</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s">"status"</span><span class="p">:</span> <span class="mi">403</span><span class="p">,</span>
+                        <span class="s">"error"</span><span class="p">:</span> <span class="s">"missing required field"</span><span class="p">}</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">user_exists</span><span class="p">(</span><span class="n">newUser</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">"email"</span><span class="p">:</span> <span class="n">newUser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'email'</span><span class="p">)})</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="s">"user already exists"</span><span class="p">,</span>
+                    <span class="s">"status"</span><span class="p">:</span> <span class="mi">403</span><span class="p">}</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">social_user_exists</span><span class="p">(</span><span class="n">newUser</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s">'facebook'</span> <span class="ow">in</span> <span class="n">newUser</span><span class="p">[</span><span class="s">"social"</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">"social.facebook.id"</span> <span class="p">:</span> <span class="n">newUser</span><span class="p">[</span><span class="s">"social"</span><span class="p">][</span><span class="s">"facebook"</span><span class="p">][</span><span class="s">"id"</span><span class="p">]})</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="s">"user already exists"</span><span class="p">,</span> <span class="s">"status"</span><span class="p">:</span> <span class="mi">403</span><span class="p">}</span>
+        <span class="k">if</span> <span class="s">'github'</span> <span class="ow">in</span> <span class="n">newUser</span><span class="p">[</span><span class="s">"social"</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">"social.github.id"</span> <span class="p">:</span> <span class="n">newUser</span><span class="p">[</span><span class="s">"social"</span><span class="p">][</span><span class="s">"github"</span><span class="p">][</span><span class="s">"id"</span><span class="p">]})</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="s">"user already exists"</span><span class="p">,</span> <span class="s">"status"</span><span class="p">:</span> <span class="mi">403</span><span class="p">}</span>
+        <span class="k">if</span> <span class="s">'coinbase'</span> <span class="ow">in</span> <span class="n">newUser</span><span class="p">[</span><span class="s">"social"</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">"social.coinbase.id"</span> <span class="p">:</span> <span class="n">newUser</span><span class="p">[</span><span class="s">"social"</span><span class="p">][</span><span class="s">"coinbase"</span><span class="p">][</span><span class="s">"id"</span><span class="p">]})</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="s">"user already exists"</span><span class="p">,</span> <span class="s">"status"</span><span class="p">:</span> <span class="mi">403</span><span class="p">}</span>
+        <span class="k">if</span> <span class="s">'linkedin'</span> <span class="ow">in</span> <span class="n">newUser</span><span class="p">[</span><span class="s">"social"</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">"social.linkedin.id"</span> <span class="p">:</span> <span class="n">newUser</span><span class="p">[</span><span class="s">"social"</span><span class="p">][</span><span class="s">"linkedin"</span><span class="p">][</span><span class="s">"id"</span><span class="p">]})</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="s">"user already exists"</span><span class="p">,</span> <span class="s">"status"</span><span class="p">:</span> <span class="mi">403</span><span class="p">}</span>
+        <span class="k">if</span> <span class="s">'twitter'</span> <span class="ow">in</span> <span class="n">newUser</span><span class="p">[</span><span class="s">"social"</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">"social.twitter.id"</span> <span class="p">:</span> <span class="n">newUser</span><span class="p">[</span><span class="s">"social"</span><span class="p">][</span><span class="s">"twitter"</span><span class="p">][</span><span class="s">"id"</span><span class="p">]})</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="s">"user already exists"</span><span class="p">,</span> <span class="s">"status"</span><span class="p">:</span> <span class="mi">403</span><span class="p">}</span>
+        <span class="k">if</span> <span class="s">'google'</span> <span class="ow">in</span> <span class="n">newUser</span><span class="p">[</span><span class="s">"social"</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">"social.facebook.id"</span> <span class="p">:</span> <span class="n">newUser</span><span class="p">[</span><span class="s">"social"</span><span class="p">][</span><span class="s">"google"</span><span class="p">][</span><span class="s">"id"</span><span class="p">]})</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="s">"user already exists"</span><span class="p">,</span> <span class="s">"status"</span><span class="p">:</span> <span class="mi">403</span><span class="p">}</span>
+
+
+    <span class="k">if</span> <span class="s">'social'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">newUser</span><span class="p">:</span>
+        <span class="n">failure</span> <span class="o">=</span> <span class="n">wrong_signup_request</span><span class="p">(</span><span class="n">newUser</span><span class="p">)</span> <span class="ow">or</span> <span class="n">user_exists</span><span class="p">(</span><span class="n">newUser</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">failure</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">failure</span>
+
+        <span class="n">unencryptedPassword</span> <span class="o">=</span> <span class="n">newUser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'password'</span><span class="p">)</span>
+        <span class="n">newUser</span><span class="p">[</span><span class="s">"password"</span><span class="p">]</span> <span class="o">=</span> <span class="n">encode_hex</span><span class="p">(</span><span class="n">scrypt</span><span class="o">.</span><span class="nb">hash</span><span class="p">(</span><span class="n">newUser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'password'</span><span class="p">),</span> <span class="s">"du gros sel s'il vous plait"</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
+
+        <span class="n">user</span> <span class="o">=</span> <span class="n">UserDocument</span><span class="p">(</span><span class="n">newUser</span><span class="p">)</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">populate_key</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">login</span><span class="p">({</span><span class="s">"id"</span><span class="p">:</span> <span class="n">b64encode</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">newUser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'name'</span><span class="p">),</span> <span class="s">'utf-8'</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="s">':'</span> <span class="o">+</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">unencryptedPassword</span><span class="p">,</span> <span class="s">'utf-8'</span><span class="p">))})</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">failure</span> <span class="o">=</span> <span class="n">social_user_exists</span><span class="p">(</span><span class="n">newUser</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">failure</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">failure</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">UserDocument</span><span class="p">(</span><span class="n">newUser</span><span class="p">)</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">populate_key</span><span class="p">()</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">generatePersonalDataFromSocial</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="n">newUser</span><span class="p">,</span> <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span><span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;token&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"user"</span><span class="p">:</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"586873da9a112c005018081b"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3 rue toto"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"birthday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"06/12/1990"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Paris"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"toto@api.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eth"</span><span class="w"> </span><span class="p">:</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"mainKey"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"keys"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"firstname"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"toto"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"gender"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastname"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tata"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tototata"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"password"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"06739ff96e0da"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>Requête HTTP</strong></p>
+
+<p><code class="prettyprint">POST /newUser</code></p>
+
+<p><strong>Paramètres de requête</strong></p>
+
+<table><thead>
+<tr>
+<th>Paramètre</th>
 <th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>name</td>
+<td>Pas de valeur par défaut</td>
+<td>Nom de connexion de l&#39;utilisateur.</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>email</td>
+<td>Pas de valeur par défaut</td>
+<td>Adresse e-mail de l&#39;utilisateur..</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Pas de valeur par défaut</td>
+<td>Mot de passe de l&#39;utilisateur.</td>
+</tr>
+<tr>
+<td>eth</td>
+<td>false</td>
+<td>Si l&#39;utilisateur souhaite une clé ethereum ou non.</td>
+</tr>
+<tr>
+<td>firstname</td>
+<td>&ldquo;&rdquo;</td>
+<td>Prénom de l&#39;utilisateur.</td>
+</tr>
+<tr>
+<td>lastname</td>
+<td>&ldquo;&rdquo;</td>
+<td>Nom de famille de l&#39;utilisateur.</td>
+</tr>
+<tr>
+<td>birthday</td>
+<td>&ldquo;&rdquo;</td>
+<td>Date de naissance de l&#39;utilisateur.</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>&ldquo;&rdquo;</td>
+<td>Sexe de l&#39;utilisateur.</td>
+</tr>
+<tr>
+<td>address</td>
+<td>&ldquo;&rdquo;</td>
+<td>Adresse de l&#39;utilisateur.</td>
+</tr>
+<tr>
+<td>city</td>
+<td>&ldquo;&rdquo;</td>
+<td>Ville de l&#39;utilisateur.</td>
 </tr>
 </tbody></table>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+<h3 id="v-rification-du-token-d-39-authentification">Vérification du token d&#39;authentification</h3>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+<p>Ce point d&#39;accès permet de vérifier que l&#39;utilisateur est bien authentifié.</p>
+<pre class="highlight python"><code><span class="k">def</span> <span class="nf">check_token_validity</span><span class="p">(</span><span class="n">token</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="p">{</span><span class="s">"user"</span><span class="p">:</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">token</span><span class="p">)},</span>
+            <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span><span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"user"</span><span class="w"> </span><span class="p">:</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"586873da9a112c005018081b"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3 rue toto"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"birthday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"06/12/1990"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Paris"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"toto@api.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eth"</span><span class="w"> </span><span class="p">:</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"mainKey"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"keys"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"firstname"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"toto"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"gender"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastname"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tata"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tototata"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"password"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"06739ff96e0da"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p><strong>Requête HTTP</strong></p>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<p><code class="prettyprint">GET /checkTokenValidity/&lt;token&gt;</code></p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
+<p><strong>Paramètres d&#39;URL</strong></p>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Paramètre</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>token</td>
+<td>Token d&#39;authentification à vérifier.</td>
 </tr>
 </tbody></table>
 
-          <h1 id="errors">Errors</h1>
+<h3 id="suppression">Suppression</h3>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+<p>Ce point d&#39;accès supprime un utilisateur.
+<aside class="warning">Ce point d&#39;accès nécessite d&#39;être authentifié.</aside></p>
 
-<p>The Kittn API uses the following error codes:</p>
+<blockquote>
+<p>Cette méthode ne fait rien pour le moment.</p>
+</blockquote>
+
+<h2 id="information-management">Information management</h2>
+
+<h3 id="mise-jour-des-informations-utilisateur">Mise à jour des informations utilisateur</h3>
+
+<aside class="notice">Ce point d'accès met à jour les informations de l'utilisateur. Il est utilisé uniquement pour informations sociales pour le moment.</aside>
+
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
+<pre class="highlight python"><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">newData</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">recurse_update</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">newData</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">newData</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Mapping</span><span class="p">):</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">recurse_update</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">{}),</span> <span class="n">value</span><span class="p">)</span>
+                <span class="n">user</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">user</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">newData</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">user</span>
+
+    <span class="n">user</span> <span class="o">=</span> <span class="n">recurse_update</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">newData</span><span class="p">)</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">save_partial</span><span class="p">()</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">generatePersonalDataFromSocial</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span><span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"user"</span><span class="w"> </span><span class="p">:</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"586873da9a112c005018081b"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3 rue toto"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"birthday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"06/12/1990"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Paris"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"toto@api.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eth"</span><span class="w"> </span><span class="p">:</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"mainKey"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"keys"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"firstname"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"toto"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"gender"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastname"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tata"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tototata"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"password"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"06739ff96e0da"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>Requête HTTP</strong></p>
+
+<p><code class="prettyprint">POST /updateUser</code></p>
+
+<h3 id="mise-jour-des-informations-utilisateur">Mise à jour des informations utilisateur</h3>
+
+<aside class="notice">Ce point d'accès met à jour les informations de l'utilisateur. Il est utilisé uniquement pour les informations affichées dans le profil de l'utilisateur.</aside>
+
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
+<pre class="highlight python"><code><span class="k">def</span> <span class="nf">updateUserField</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">newData</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">field_exist</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">"_id"</span><span class="p">:</span> <span class="n">ObjectId</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">"_id"</span><span class="p">])})</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="s">"Cannot find the user and with the corresponding data. Please logout, login and try again"</span><span class="p">,</span>
+                <span class="s">"status"</span><span class="p">:</span> <span class="mi">401</span><span class="p">}</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="n">error</span> <span class="o">=</span> <span class="n">field_exist</span><span class="p">(</span><span class="n">newData</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">error</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">error</span>
+
+    <span class="n">user</span><span class="p">[</span><span class="n">newData</span><span class="p">[</span><span class="s">"name"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">newData</span><span class="p">[</span><span class="s">"new"</span><span class="p">];</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">save_partial</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span><span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"user"</span><span class="w"> </span><span class="p">:</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"586873da9a112c005018081b"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3 rue toto"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"birthday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"06/12/1990"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Paris"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"toto@api.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eth"</span><span class="w"> </span><span class="p">:</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"mainKey"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"keys"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"firstname"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"toto"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"gender"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastname"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tata"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tototata"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"password"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"06739ff96e0da"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>Requête HTTP</strong></p>
+
+<p><code class="prettyprint">POST /updateSingleUserField</code></p>
+
+<p><strong>Paramètres de requête</strong></p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Paramètre</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>ID de l&#39;utilisateur a modifier.</td>
+</tr>
+<tr>
+<td>new</td>
+<td>Nouvelle valeur du champ.</td>
+</tr>
+<tr>
+<td>old</td>
+<td>Ancienne valeur.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Nom du champ à modifier.</td>
+</tr>
+</tbody></table>
+
+<h3 id="recherche-d-39-un-utilisateur">Recherche d&#39;un utilisateur</h3>
+
+<p>Ce point d&#39;accès permet de trouver un utilisateur.</p>
+<pre class="highlight python"><code><span class="k">def</span> <span class="nf">findUser</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s">"name"</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s">"name"</span><span class="p">]})</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"data"</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span><span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"user"</span><span class="w"> </span><span class="p">:</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"586873da9a112c005018081b"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3 rue toto"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"birthday"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"06/12/1990"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Paris"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"toto@api.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eth"</span><span class="w"> </span><span class="p">:</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"mainKey"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"keys"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"firstname"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"toto"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"gender"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastname"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tata"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tototata"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"password"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"06739ff96e0da"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>Requête HTTP</strong></p>
+
+<p><code class="prettyprint">POST /findUser</code></p>
+
+<p><strong>Paramètres de la requête</strong></p>
+
+<table><thead>
+<tr>
+<th>Paramètres</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>Nom de l&#39;utilisateur à rechercher.</td>
+</tr>
+</tbody></table>
+
+<h2 id="key-management">Key management</h2>
+
+<h3 id="g-n-re-une-clef-li-e-au-compte">Génère une clef liée au compte</h3>
+
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
+<pre class="highlight python"><code><span class="k">def</span> <span class="nf">gen_linked_key</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+
+  <span class="k">def</span> <span class="nf">gen_key_remote</span><span class="p">(</span><span class="n">password</span><span class="p">):</span>
+    <span class="n">hashPassword</span> <span class="o">=</span> <span class="n">scrypt</span><span class="o">.</span><span class="nb">hash</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="s">"je trouve que les carottes ne sont pas assez salées"</span><span class="p">)</span>
+    <span class="n">hashPassword</span> <span class="o">=</span> <span class="n">encode_hex</span><span class="p">(</span><span class="n">hashPassword</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
+    <span class="n">dirContent</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="n">keyDirectory</span><span class="p">)</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">eth_cli</span><span class="o">.</span><span class="n">personal_newAccount</span><span class="p">(</span><span class="n">hashPassword</span><span class="p">)</span>
+    <span class="n">keyFile</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">listdir</span><span class="p">(</span><span class="n">keyDirectory</span><span class="p">))</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">dirContent</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"address"</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span> <span class="s">"file"</span><span class="p">:</span> <span class="n">keyFile</span><span class="p">}</span>
+
+  <span class="n">newKey</span> <span class="o">=</span> <span class="n">gen_key_remote</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+  <span class="n">user</span><span class="o">.</span><span class="n">add_key</span><span class="p">(</span><span class="n">newKey</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'address'</span><span class="p">),</span> <span class="n">local</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">newKey</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'file'</span><span class="p">))</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="s">"data"</span><span class="p">:</span> <span class="n">newKey</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'address'</span><span class="p">),</span>
+    <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span>
+  <span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="s2">"0xa98786136a8d89525b1c1618f601e649116da8c6"</span><span class="w">
+</span></code></pre>
+<p><strong>Requête HTTP</strong></p>
+
+<p><code class="prettyprint">POST /genLinkedKey</code></p>
+
+<p><strong>Paramètres de la requête</strong></p>
+
+<table><thead>
+<tr>
+<th>Paramètres</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Aucun</td>
+<td>/</td>
+</tr>
+</tbody></table>
+
+<h3 id="g-n-ration-de-clef-locale">Génération de clef locale</h3>
+
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
+<pre class="highlight python"><code><span class="k">def</span> <span class="nf">key_was_generated</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">address</span><span class="p">):</span>
+  <span class="n">address</span> <span class="o">=</span> <span class="n">normalize_address</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">hexa</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+  <span class="n">user</span><span class="o">.</span><span class="n">add_key</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="n">fromWei</span><span class="p">(</span><span class="n">eth_cli</span><span class="o">.</span><span class="n">eth_getBalance</span><span class="p">(</span><span class="n">address</span><span class="p">)))</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="s">"data"</span><span class="p">:</span> <span class="s">"OK"</span><span class="p">,</span>
+    <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span>
+  <span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="w"> </span><span class="s2">"OK"</span><span class="w">
+</span></code></pre>
+<p><strong>Requête HTTP</strong></p>
+
+<p><code class="prettyprint">GET /keyWasGenerated/&lt;address&gt;</code></p>
+
+<p><strong>Paramètres de l&#39;URL</strong></p>
+
+<table><thead>
+<tr>
+<th>Paramètres</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>adresse de la nouvelle clef</td>
+</tr>
+</tbody></table>
+
+<h3 id="importer-une-clef-existante">Importer une clef existante</h3>
+
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
+<pre class="highlight python"><code><span class="k">def</span> <span class="nf">import_new_key</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">sourceKey</span><span class="p">):</span>
+
+  <span class="k">def</span> <span class="nf">is_ethereum_key</span><span class="p">(</span><span class="n">keyFile</span><span class="p">):</span>
+    <span class="n">required_entries</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s">"address"</span><span class="p">,</span> <span class="s">"crypto"</span><span class="p">,</span> <span class="s">"id"</span><span class="p">,</span> <span class="s">"version"</span><span class="p">])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">required_entries</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">keyFile</span><span class="o">.</span><span class="n">keys</span><span class="p">())):</span>
+      <span class="k">raise</span> <span class="n">KeyFormatError</span>
+
+  <span class="k">def</span> <span class="nf">key_already_exists</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">userExistingAddresses</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">normalize_address</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">hexa</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="ow">in</span> <span class="n">userExistingAddresses</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+      <span class="k">raise</span> <span class="n">KeyExistsError</span>
+
+  <span class="k">def</span> <span class="nf">import_key_remote</span><span class="p">(</span><span class="n">keyId</span><span class="p">,</span> <span class="n">sourceKey</span><span class="p">):</span>
+    <span class="n">keyFilename</span> <span class="o">=</span> <span class="s">"UTC--"</span> <span class="o">+</span> <span class="n">strftime</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">Y-</span><span class="si">%</span><span class="s">m-</span><span class="si">%</span><span class="s">dT</span><span class="si">%</span><span class="s">H-</span><span class="si">%</span><span class="s">M-</span><span class="si">%</span><span class="s">S"</span><span class="p">)</span> <span class="o">+</span> <span class="s">"."</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">clock</span><span class="p">())[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">+</span> <span class="s">"Z--"</span> <span class="o">+</span> <span class="n">keyId</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">keyDirectory</span><span class="p">,</span> <span class="n">keyFilename</span><span class="p">),</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+      <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sourceKey</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">keyFilename</span>
+
+  <span class="n">status</span> <span class="o">=</span> <span class="mi">200</span>
+  <span class="n">sourceKey</span> <span class="o">=</span> <span class="n">sourceKey</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
+
+  <span class="k">try</span><span class="p">:</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">sourceKey</span><span class="p">)</span>
+    <span class="n">is_ethereum_key</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="n">key_already_exists</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'address'</span><span class="p">),</span> <span class="n">user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'eth'</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'keys'</span><span class="p">))</span>
+    <span class="n">keyFilename</span> <span class="o">=</span> <span class="n">import_key_remote</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'id'</span><span class="p">),</span> <span class="n">sourceKey</span><span class="p">)</span>
+    <span class="n">key</span><span class="p">[</span><span class="s">"address"</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize_address</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'address'</span><span class="p">),</span> <span class="n">hexa</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> <span class="s">"address"</span> <span class="p">:</span> <span class="n">key</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'address'</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">add_key</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'address'</span><span class="p">),</span> <span class="n">local</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="n">fromWei</span><span class="p">(</span><span class="n">eth_cli</span><span class="o">.</span><span class="n">eth_getBalance</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'address'</span><span class="p">))),</span> <span class="nb">file</span><span class="o">=</span><span class="n">keyFilename</span><span class="p">)</span>
+  <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="n">KeyFormatError</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="s">"key format not recognized"</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="mi">400</span>
+  <span class="k">except</span> <span class="p">(</span><span class="n">KeyExistsError</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="s">"trying to import an existing key"</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="mi">400</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="s">"data"</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+    <span class="s">"status"</span><span class="p">:</span> <span class="n">status</span>
+  <span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xa98786136a8d89525b1c1618f601e649116da8c6"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>Requête HTTP</strong></p>
+
+<p><code class="prettyprint">POST /importNewKey</code></p>
+
+<p><strong>Paramètres de la requête</strong></p>
+
+<table><thead>
+<tr>
+<th>Paramètres</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td>fichier contenant la clef existante</td>
+</tr>
+</tbody></table>
+
+<h3 id="exporter-une-clef">Exporter une clef</h3>
+
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
+<pre class="highlight python"><code><span class="k">def</span> <span class="nf">export_key</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">delete</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+  <span class="n">exportedKey</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">exportedKey</span> <span class="ow">and</span> <span class="n">delete</span> <span class="ow">and</span> <span class="n">exportedKey</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'local'</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">remove_key</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="s">"data"</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+      <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span>
+    <span class="p">}</span>
+
+  <span class="k">elif</span> <span class="n">exportedKey</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">keyFile</span> <span class="ow">in</span> <span class="n">listdir</span><span class="p">(</span><span class="n">keyDirectory</span><span class="p">):</span>
+      <span class="k">if</span> <span class="n">exportedKey</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'file'</span><span class="p">)</span> <span class="o">==</span> <span class="n">keyFile</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">keyDirectory</span><span class="p">,</span> <span class="n">keyFile</span><span class="p">),</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+          <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+          <span class="k">if</span> <span class="n">delete</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">remove_key</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="n">remove</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+          <span class="k">return</span> <span class="p">{</span>
+            <span class="s">"data"</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+            <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span>
+          <span class="p">}</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="s">"data"</span><span class="p">:</span> <span class="s">"Key does not exists"</span><span class="p">,</span>
+    <span class="s">"status"</span><span class="p">:</span> <span class="mi">400</span>
+  <span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7f607df82ec1107cfd31431aefc03041dd239316"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"crypto"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"cipher"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aes-128-ctr"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cipherparams"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"iv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e0aeff559a53241f7f57cd5accea9330"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"ciphertext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"208d1ada7c79aa2be36252705420145955869089489aaf9387713e117c9c4f66"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"kdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pbkdf2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"kdfparams"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"c"</span><span class="p">:</span><span class="w"> </span><span class="mi">10240</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"dklen"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"prf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hmac-sha256"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"salt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d55d2e80e22fb8a716453d7d8d3300d8fe28d7bdc732b9a327cc026ca92dd6f0"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"mac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3eba1319a5a719812651bcf4e1f7389265dd45c10bd05b378b5f0d24a6b88ccd"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8b2899cc-1cda-d6ad-e24a-4aa519783a99"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{}"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8b2899cc-1cda-d6ad-e24a-4aa519783a99"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>}</p>
+
+<p><strong>Requête HTTP</strong></p>
+
+<p><code class="prettyprint">GET /exportKey/&lt;address&gt;</code></p>
+
+<p><strong>Paramètres de l&#39;URL</strong></p>
+
+<table><thead>
+<tr>
+<th>Paramètres</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>adresse de la clef à exporter</td>
+</tr>
+</tbody></table>
+
+<h3 id="supprimer-une-clef">Supprimer une clef</h3>
+
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
+<pre class="highlight python"><code><span class="k">def</span> <span class="nf">export_key</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">delete</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+  <span class="n">exportedKey</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">exportedKey</span> <span class="ow">and</span> <span class="n">delete</span> <span class="ow">and</span> <span class="n">exportedKey</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'local'</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">remove_key</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="s">"data"</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+      <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span>
+    <span class="p">}</span>
+
+  <span class="k">elif</span> <span class="n">exportedKey</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">keyFile</span> <span class="ow">in</span> <span class="n">listdir</span><span class="p">(</span><span class="n">keyDirectory</span><span class="p">):</span>
+      <span class="k">if</span> <span class="n">exportedKey</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'file'</span><span class="p">)</span> <span class="o">==</span> <span class="n">keyFile</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">keyDirectory</span><span class="p">,</span> <span class="n">keyFile</span><span class="p">),</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+          <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+          <span class="k">if</span> <span class="n">delete</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">remove_key</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="n">remove</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+          <span class="k">return</span> <span class="p">{</span>
+            <span class="s">"data"</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+            <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span>
+          <span class="p">}</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="s">"data"</span><span class="p">:</span> <span class="s">"Key does not exists"</span><span class="p">,</span>
+    <span class="s">"status"</span><span class="p">:</span> <span class="mi">400</span>
+  <span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a98786136a8d89525b1c1618f601e649116da8c6"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"crypto"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"cipher"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aes-128-ctr"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cipherparams"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"iv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6e6c4af40b62f5ad613d9dcc3bb23897"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"ciphertext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d546ac8273e5f6962b658d8c2a7fea6939022704dc78d1244491ac473b8b7f52"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"kdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pbkdf2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"kdfparams"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"c"</span><span class="p">:</span><span class="w"> </span><span class="mi">10240</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"dklen"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"prf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hmac-sha256"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"salt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38daeb21f66984bfeb93a43f3507126ad362e9fc7c7ff3ddc6876a7f8bf4561e"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"mac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4041bc2f35464d6ab1a2d8e7e8d9f79aff4c1c93e5c5e721076fedb029b2b9af"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9a463bfd-4e09-1f60-ad13-c1857f4eba45"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{}"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9a463bfd-4e09-1f60-ad13-c1857f4eba45"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>Requête HTTP</strong></p>
+
+<p><code class="prettyprint">GET /exportDeleteKey/&lt;address&gt;</code></p>
+
+<p><strong>Paramètres de l&#39;URL</strong></p>
+
+<table><thead>
+<tr>
+<th>Paramètres</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>adresse de la clef à supprimer</td>
+</tr>
+</tbody></table>
+
+<h2 id="wallet-management">Wallet management</h2>
+
+<h3 id="get-la-balance-totale-d-39-un-utilisateur">Get la balance totale d&#39;un utilisateur</h3>
+
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
+<pre class="highlight python"><code><span class="k">def</span> <span class="nf">refresh_all_balances</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+  <span class="n">accounts</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'eth'</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'keys'</span><span class="p">)</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+  <span class="k">for</span> <span class="n">account</span> <span class="ow">in</span> <span class="n">accounts</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">ret</span><span class="p">[</span><span class="n">account</span><span class="p">]</span> <span class="o">=</span> <span class="n">wei_to_ether</span><span class="p">(</span><span class="n">eth_cli</span><span class="o">.</span><span class="n">eth_getBalance</span><span class="p">(</span><span class="n">account</span><span class="p">))</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="s">"data"</span><span class="p">:</span> <span class="n">ret</span><span class="p">,</span>
+    <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span>
+  <span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="w"> </span><span class="mf">0.0</span><span class="w">
+</span></code></pre>
+<p><strong>Requête HTTP</strong></p>
+
+<p><code class="prettyprint">GET /getAllBalances&gt;</code></p>
+
+<p><strong>Paramètres de l&#39;URL</strong></p>
+
+<table><thead>
+<tr>
+<th>Paramètres</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aucun</td>
+<td>/</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-la-balance-d-39-une-addresse">Get la balance d&#39;une addresse</h3>
+
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
+<pre class="highlight python"><code> <span class="k">def</span> <span class="nf">refresh_balance</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">account</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">account</span> <span class="ow">in</span> <span class="n">user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'eth'</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'keys'</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="s">"data"</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">refresh_balance</span><span class="p">(</span><span class="n">account</span><span class="p">),</span>
+      <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span>
+    <span class="p">}</span>
+  <span class="k">elif</span> <span class="ow">not</span> <span class="n">account</span><span class="p">:</span>
+    <span class="n">balance</span> <span class="o">=</span> <span class="n">eth_cli</span><span class="o">.</span><span class="n">eth_getBalance</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'eth'</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'mainKey'</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="s">"data"</span><span class="p">:</span> <span class="n">wei_to_ether</span><span class="p">(</span><span class="n">balance</span><span class="p">),</span>
+      <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span>
+    <span class="p">}</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="s">"data"</span><span class="p">:</span> <span class="s">"user </span><span class="si">%</span><span class="s">s does not own </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'id'</span><span class="p">),</span> <span class="n">account</span><span class="p">),</span>
+      <span class="s">"status"</span><span class="p">:</span> <span class="mi">400</span>
+    <span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="mf">0.0</span><span class="w">
+</span></code></pre>
+<p><strong>Requête HTTP</strong></p>
+
+<p><code class="prettyprint">GET /getBalance/&lt;address&gt;</code></p>
+
+<p><strong>Paramètres de l&#39;URL</strong></p>
+
+<table><thead>
+<tr>
+<th>Paramètres</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>adresse de la balance souhaitée</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-l-39-historique-des-transactions">Get l&#39;historique des transactions</h3>
+
+<aside class="warning">Ce point d'accès nécessite d'être authentifié.</aside>
+<pre class="highlight python"><code><span class="k">def</span> <span class="nf">get_tx_history</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">account</span><span class="p">):</span>
+  <span class="c"># r = requests.get('https://etherchain.org/api/account/%s/tx/0' % account)</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"REQUESTING : "</span><span class="p">,</span> <span class="s">"https://etherchain.org/api/account/0xEA674fdDe714fd979de3EdF0F56AA9716B898ec8/tx/0"</span><span class="p">)</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://etherchain.org/api/account/0xEA674fdDe714fd979de3EdF0F56AA9716B898ec8/tx/0'</span><span class="p">)</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'data'</span><span class="p">)</span>
+  <span class="k">return</span> <span class="p">{</span>
+      <span class="s">"data"</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+      <span class="s">"status"</span><span class="p">:</span> <span class="mi">200</span>
+    <span class="p">}</span>
+</code></pre><pre class="highlight json"><code><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"accountNonce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1079107"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1018447849366805100</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"blockHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x4120921df50faf20d0f7919c2beaa7a78b944314c714079ae7fbc38358ba5351"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"block_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2983818</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"gasLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">90000</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"gasUsed"</span><span class="p">:</span><span class="w"> </span><span class="mi">21000</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x19a4a94893aedb3eed733a00caf3fb0fd062950e5c91f04e95b5956350a9a7b7"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"isContractTx"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"newContract"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"parentHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x19a4a94893aedb3eed733a00caf3fb0fd062950e5c91f04e95b5956350a9a7b7"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">20000000000</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"recipient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x8875c744b353bc3ec188e00d27853aa95ed3861e"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"sender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xea674fdde714fd979de3edf0f56aa9716b898ec8"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-12T18:10:28.000Z"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"txIndex"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tx"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="p">{}</span><span class="err">........</span><span class="w"> </span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<p><strong>Requête HTTP</strong></p>
+
+<p><code class="prettyprint">GET /getTxHistory/&lt;address&gt;</code></p>
+
+<p><strong>Paramètres de l&#39;URL</strong></p>
+
+<table><thead>
+<tr>
+<th>Paramètres</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>adresse du comptes pour lequel on veut l&#39;historique des transactions</td>
+</tr>
+</tbody></table>
+
+<h1 id="organisation">Organisation</h1>
+
+<h1 id="project">Project</h1>
+
+          <h1 id="erreurs">Erreurs</h1>
+
+<p>L&#39;API de Societhy utilise les codes d&#39;erreur suivant:</p>
+
+<table><thead>
+<tr>
+<th>Code d&#39;erreur</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>Mauvaise requête.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>Non autorisé.</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Accès interdit.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>Page non trouvée.</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+<td>Erreur interne du serveur.</td>
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Service temporairement indisponible ou en maintenance.</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
                 <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="json">json</a>
           </div>
       </div>
     </div>
